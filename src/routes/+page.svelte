@@ -27,6 +27,7 @@
     flex-direction: column;
     font-family: "Comic Sans MS";
     align-items: center;
+    margin: 0px;
   }
 
   button {

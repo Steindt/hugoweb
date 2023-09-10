@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Cell from "./cell.svelte";
+	import Cell from "./Cell.svelte";
 
   // Props
   // export let cellSize: number = 30;
@@ -55,5 +55,7 @@
     display: flex;
     height: auto;
     width: auto;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 </style>

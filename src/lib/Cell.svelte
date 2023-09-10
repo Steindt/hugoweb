@@ -44,5 +44,6 @@
     border: 1px solid black;
     width: 15px;
     height: 15px;
+    padding: 0px;
   }
 </style>
