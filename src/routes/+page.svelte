@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Matrix from '$lib/Matrix.svelte';
-  import { returnArray, clear } from '$lib/Matrix.svelte';
   import sendHugo from '$lib/api';
 
   // Configuration
@@ -11,13 +10,16 @@
   let rowSize: number = 7;
   let columnSize: number = 95;
 
+  let matrix: Matrix;
 </script>
 
 <h1>Welcome</h1>
 <p>Here you can control what HUGO displays by drawing on the matrix and then clicking on "Send"!</p>
-<Matrix rowSize={rowSize} columnSize={columnSize}/>
-<button on:click={async () => sendHugo(ip, port, returnArray())}>Send</button>
-<button on:click={() => clear()}>Clear</button>
+<Matrix bind:this={matrix} rowSize={rowSize} columnSize={columnSize}/>
+<button on:click={async () => sendHugo(ip, port, matrix.getValues())}>Send</button>
+<button on:click={() => matrix.clear()}>Clear</button>
+<p>rootm@dsek.se</p>
+<a href="https://github.com/Steindt/hugoweb">Github</a>
 
 <style>
   :global(body) {

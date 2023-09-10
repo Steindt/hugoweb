@@ -1,25 +1,8 @@
-<script lang="ts" context="module">
-  let value = 0;
-  var clicked = false;
-
-  export function getValue() {
-    return value;
-  }
-
-  export function setValue(x: number) {
-    if (x == 255) {
-      clicked = true;
-    } else {
-      clicked = false;
-    }
-
-    value = x;
-  }
-</script>
-
 <script lang="ts">
+  let value = 0;
+  let clicked = false;
 
-  function changeValue() {
+  function flipValue() {
     if (value == 255) {
       value = 0;
       clicked = false;
@@ -27,20 +10,27 @@
       value = 255;
       clicked = true;
     }
-
-    console.log("clicked");
   }
   
   // Single click on cell
   function handleInput() {
-    changeValue();
+    flipValue();
   }
 
   // Dragging over multiple cells
   function handleInputOver(e: MouseEvent) {
-    // if (e.buttons == 1) {
-    //   changeValue();
-    // }
+    if (e.buttons == 1) {
+      flipValue();
+    }
+  }
+
+  export function setValue(x: number) {
+    value = x;
+    clicked = x == 255 ? true : false;
+  } 
+
+  export function getValue() {
+    return value;
   }
 </script>
 
