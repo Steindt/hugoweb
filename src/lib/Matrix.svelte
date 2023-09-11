@@ -1,8 +1,7 @@
 <script lang="ts">
-	import Cell from "./Cell.svelte";
+	import Cell, { setOpacity } from "./Cell.svelte";
 
   // Props
-  // export let cellSize: number = 30;
   export let rowSize: number = 1;
   export let columnSize: number = 1;
 
@@ -36,6 +35,16 @@
     refs.forEach((x) => {
       x.setValue(0);
     })
+  }
+
+  export function fill() {
+    refs.forEach((x) => {
+      x.setValue();
+    })
+  }
+
+  export function opacity(x: number) {
+    setOpacity(x);
   }
 
   let refs: Array<Cell> = new Array();

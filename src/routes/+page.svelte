@@ -5,11 +5,11 @@
   // Configuration
   let ip: string = "192.168.21.215";
   let port: number = 8090;
-  let cellSize: number = 50;
   // Display dependent, don't change unless screen resolution has changed
   let rowSize: number = 7;
   let columnSize: number = 95;
 
+  let value: number = 255;
   let matrix: Matrix;
 </script>
 
@@ -18,6 +18,11 @@
 <Matrix bind:this={matrix} rowSize={rowSize} columnSize={columnSize}/>
 <button on:click={async () => sendHugo(ip, port, matrix.getValues())}>Send</button>
 <button on:click={() => matrix.clear()}>Clear</button>
+<button on:click={() => matrix.fill()}>Fill</button>
+<div style='margin-top: 20px;'>
+  Strength: {value}
+  <input type="range" min="0" max="255" bind:value on:change={() => matrix.opacity(value)}/>
+</div>
 <p>rootm@dsek.se</p>
 <a href="https://github.com/Steindt/hugoweb">Github</a>
 
@@ -25,7 +30,7 @@
   :global(body) {
     display: flex;
     flex-direction: column;
-    font-family: "Comic Sans MS";
+    font-family: "Comic Sans MS", cursive;
     align-items: center;
     margin: 0px;
   }
@@ -33,6 +38,9 @@
   button {
     margin-top: 20px;
     background-color: pink;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    font-size: 1.1em;
     width: 150px;
     height: 50px;
   }
