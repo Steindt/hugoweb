@@ -1,6 +1,6 @@
 # Hugoweb
 
-Website for controlling 95x7 display (or any other resolutions) where the display unit receives a single digit between 0 and 255 through an HTTP POST request.
+Website for controlling 95x7 display (or any other resolutions) where the display unit receives an json array with single digits between 0 and 255 through an HTTP POST request.
 
 ## Developing
 
