@@ -2,10 +2,10 @@ import axios from 'axios';
 
 export default function sendHugo(ip: string, port: number, data: Array<number>) {
   console.log("sending to hugo");
-  console.log(data.forEach((x) => console.log(x)));
-  axios.defaults.withCredentials = true;
+  let whoop = handleData(data);
+  axios.defaults.withCredentials = false;
   axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
-  axios.post("http://" + ip + ":" + port.toString() + "/image", handleData(data), {
+  axios.post("http://" + ip + ":" + port.toString() + "/image", whoop, {
     headers: {
       "Content-type": "application/json",
     }
