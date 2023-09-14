@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Matrix from '$lib/Matrix.svelte';
-  import sendHugo from '$lib/api';
+  import sendMatrix, {sendText} from '$lib/api';
 
   // Configuration
   let ip: string = "192.168.21.215";
@@ -9,19 +9,26 @@
   let rowSize: number = 7;
   let columnSize: number = 95;
 
-  let value: number = 255;
+  let strength: number = 255;
   let matrix: Matrix;
+  let text: string = "";
 </script>
 
 <h1>Welcome</h1>
 <p>Here you can control what HUGO displays by drawing on the matrix and then clicking on "Send"!</p>
 <Matrix bind:this={matrix} rowSize={rowSize} columnSize={columnSize}/>
-<button on:click={async () => sendHugo(ip, port, matrix.getValues())}>Send</button>
-<button on:click={() => matrix.clear()}>Clear</button>
-<button on:click={() => matrix.fill()}>Fill</button>
+<div>
+  <button on:click={async () => sendMatrix(ip, port, matrix.getValues())}>Send Matrix</button>
+  <button on:click={() => matrix.clear()}>Clear</button>
+  <button on:click={() => matrix.fill()}>Fill</button>
+</div>
 <div style='margin-top: 20px;'>
-  Strength: {value}
-  <input type="range" min="0" max="255" bind:value on:change={() => matrix.opacity(value)}/>
+  Strength: {strength}
+  <input type="range" min="0" max="255" bind:value={strength} on:change={() => matrix.opacity(strength)}/>
+</div>
+<div>
+  <input bind:value={text}/>
+  <button on:click={() => sendText(ip, port, text)}>Send Text</button>
 </div>
 <p>rootm@dsek.se</p>
 <a href="https://github.com/Steindt/hugoweb">Github</a>
